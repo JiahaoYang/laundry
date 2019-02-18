@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="yjh.dao.UserDAO">
+    <sql id="table">user</sql>
+    <sql id="updateFields">username, password, user_type, gender,
+        phone, address, balance, total_consume, consume_times
+    </sql>
+    <sql id="insertFields">user_id, username, password, user_type, gender,
+        phone, address, balance, total_consume, consume_times, register_date
+    </sql>
+
+    <insert id="addUser" parameterType="yjh.model.User" useGeneratedKeys="true" keyProperty="user_id">
+        insert into
+        <include refid="table" />
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            username, password,
+            <if test='userType != null and userType != "" '>
+                user_type,
+            </if>
+            <if test='gender != null and gender != "" '>
+                gender,
+            </if>
+            <if test='phone != null and phone != "" '>
+                phone,
+            </if>
+            <if test='address != null and address != "" '>
+                address
+            </if>
+        </trim>
+
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            #{username}, #{password},
+            <if test='userType != null and userType != "" '>
+                #{userType},
+            </if>
+            <if test='gender != null and gender != "" '>
+                #{gender},
+            </if>
+            <if test='phone != null and phone != "" '>
+                #{phone},
+            </if>
+            <if test='address != null and address != "" '>
+                #{address}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateUser">
+        update
+        <include refid="table" />
+        <trim prefix="set" suffixOverrides=",">
+            <if test='username != null and username != "" '>
+                username = #{username},
+            </if>
+            <if test='password != null and password != "" '>
+                password = #{password},
+            </if>
+            <if test='userType != null and userType != "" '>
+                user_type = #{userType},
+            </if>
+            <if test='gender != null and gender != "" '>
+                gender = #{gender},
+            </if>
+            <if test='phone != null and phone != "" '>
+                phone = #{phone},
+            </if>
+            <if test='address != null and address != "" '>
+                address = #{address},
+            </if>
+            <if test='balance != null and balance != "" '>
+                balance = #{balance},
+            </if>
+            <if test='totalConsume != null and totalConsume != "" '>
+                total_consume = #{total_consume},
+            </if>
+            <if test='consumeTimes != null and consumeTimes != "" '>
+                consume_times = #{consumeTimes}
+            </if>
+        </trim>
+        where user_id = #{userId}
+    </update>
+
+
+</mapper>
