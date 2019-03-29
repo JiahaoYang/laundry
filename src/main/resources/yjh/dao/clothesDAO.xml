@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="yjh.dao.ClothesDAO">
+
+    <insert id="addClothes" useGeneratedKeys="true" keyProperty="clothesId">
+        insert into clothes
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            clothes_name,
+            <if test='brand != null and brand != "" '>
+                brand,
+            </if>
+            <if test='color != null and color != "" '>
+                color,
+            </if>
+            <if test='flaw != null and flaw != "" '>
+                flaw
+            </if>
+        </trim>
+
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            #{clothesName},
+            <if test='brand != null and brand != "" '>
+                #{brand},
+            </if>
+            <if test='color != null and color != "" '>
+                #{color},
+            </if>
+            <if test='flaw != null and flaw != "" '>
+                #{flaw}
+            </if>
+        </trim>
+    </insert>
+
+    <!--<update id="updateById">-->
+        <!--update info-->
+        <!--<trim prefix="set" suffixOverrides=",">-->
+            <!--<if test='name != null and name != "" '>-->
+                <!--name=#{name},-->
+            <!--</if>-->
+            <!--<if test='description != null'>-->
+                <!--description=#{description},-->
+            <!--</if>-->
+            <!--<if test='price != null and price != "" '>-->
+                <!--price=#{price}-->
+            <!--</if>-->
+        <!--</trim>-->
+        <!--where info_id=#{infoId}-->
+    <!--</update>-->
+</mapper>

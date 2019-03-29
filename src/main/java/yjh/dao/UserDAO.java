@@ -3,6 +3,8 @@ package yjh.dao;
 import org.apache.ibatis.annotations.*;
 import yjh.model.User;
 
+import java.util.List;
+
 @Mapper
 public interface UserDAO {
 
@@ -21,4 +23,11 @@ public interface UserDAO {
     int addUser(User user);
 
     int updateUser(User user);
+
+    @Update(" update user set password=#{password} where username=#{username}" )
+    int updatePassword(String username, String password);
+
+    @Select(" select * from user where user_type='会员' ")
+    List<User> list();
+
 }

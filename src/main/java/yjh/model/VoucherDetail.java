@@ -6,11 +6,22 @@ public class VoucherDetail {
     private Integer voucherId;
     private Integer clothesId;
     private Double washPrice;
-    private Integer clothesAmount;
+    private String serverName;
     private String isTaken;
     private String isRewash;
     private String isCompensate;
     private String comment;
+
+    //非数据库字段, 衣服和收衣单明细为一对一关系
+    private Clothes clothes;
+
+    public Clothes getClothes() {
+        return clothes;
+    }
+
+    public void setClothes(Clothes clothes) {
+        this.clothes = clothes;
+    }
 
     public Integer getVoucherDetailId() {
         return voucherDetailId;
@@ -44,13 +55,14 @@ public class VoucherDetail {
         this.washPrice = washPrice;
     }
 
-    public Integer getClothesAmount() {
-        return clothesAmount;
+    public String getServerName() {
+        return serverName;
     }
 
-    public void setClothesAmount(Integer clothesAmount) {
-        this.clothesAmount = clothesAmount;
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
     }
+
 
     public String getIsTaken() {
         return isTaken;
@@ -91,7 +103,7 @@ public class VoucherDetail {
                 ", voucherId=" + voucherId +
                 ", clothesId=" + clothesId +
                 ", washPrice=" + washPrice +
-                ", clothesAmount=" + clothesAmount +
+                ", serverName=" + serverName +
                 ", isTaken='" + isTaken + '\'' +
                 ", isRewash='" + isRewash + '\'' +
                 ", isCompensate='" + isCompensate + '\'' +

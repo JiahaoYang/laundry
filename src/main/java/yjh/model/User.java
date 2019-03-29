@@ -1,6 +1,8 @@
 package yjh.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class User {
@@ -15,6 +17,7 @@ public class User {
     private Double balance;
     private Double totalConsume;
     private Integer consumeTimes;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:MM:SS")
     private LocalDateTime registerDate;
 
     public Integer getUserId() {

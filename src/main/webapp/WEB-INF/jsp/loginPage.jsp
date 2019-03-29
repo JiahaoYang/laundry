@@ -1,29 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="include/header.jsp" %>
-
+<script src="js/script.js"></script>
 <script>
     $(function () {
         <c:if test="${!empty msg}">
         $("#errorMessage").text("${msg}");
         $("#errorDiv").show();
         </c:if>
-
-        $("form.input").keyup(function () {
-            $("#errorDiv").hide();
-        });
-
-        $("#phone").blur(function () {
-            var reg=/^[1][3,4,5,7,8][0-9]{9}$/;
-            var phone = $("#phone").val();
-            if (phone !== "" && !reg.test(phone)) {
-                $("#errorMessage").text("请填写正确的联系方式");
-                $("#errorDiv").show();
-                $("#registerBtn").attr("disabled", true);
-            } else {
-                $("#errorDiv").hide();
-                $("#registerBtn").attr("disabled", false);
-            }
-        });
 
         $("#registerName").blur(function() {
             var user = {"username": $("#registerName").val()};
@@ -46,7 +29,8 @@
                 }
             )
         });
-    })
+    });
+
 </script>
 
 

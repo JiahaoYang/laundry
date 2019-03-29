@@ -60,20 +60,20 @@
             <if test='userType != null and userType != "" '>
                 user_type = #{userType},
             </if>
-            <if test='gender != null and gender != "" '>
+            <if test='gender != null'>
                 gender = #{gender},
             </if>
-            <if test='phone != null and phone != "" '>
+            <if test='phone != null'>
                 phone = #{phone},
             </if>
-            <if test='address != null and address != "" '>
+            <if test='address != null'>
                 address = #{address},
             </if>
             <if test='balance != null and balance != "" '>
                 balance = #{balance},
             </if>
             <if test='totalConsume != null and totalConsume != "" '>
-                total_consume = #{total_consume},
+                total_consume = #{totalConsume},
             </if>
             <if test='consumeTimes != null and consumeTimes != "" '>
                 consume_times = #{consumeTimes}

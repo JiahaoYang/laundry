@@ -5,8 +5,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 import yjh.model.Info;
 import yjh.model.User;
@@ -32,12 +31,12 @@ public class UserController {
 
 
     @RequestMapping("/register")
-    public String register(User user, Model model) {
+    public String register(User user, Model model, HttpSession session) {
         int cnt = userService.addUser(user);
         if (cnt > 0) {
+            session.setAttribute("user", user);
             return "";
-        }
-        else {
+        } else {
             model.addAttribute("user", null);
             return "loginPage";
         }
@@ -49,6 +48,15 @@ public class UserController {
     public String checkName(String username) {
         boolean exist = userService.isExist(username);
         if (exist)
+            return "exist";
+        return "";
+    }
+
+    @RequestMapping("/checkName_")
+    @ResponseBody
+    public String checkName_(String username, String oldName) {
+        User user = userService.getByName(username);
+        if (user != null && !(user.getUsername().equals(oldName)))
             return "exist";
         return "";
     }
@@ -82,4 +90,57 @@ public class UserController {
         return "admin/listInfos";
     }
 
+    @RequestMapping("logout")
+    public String logout(HttpSession session) {
+        session.setAttribute("user", null);
+        return "redirect:listInfos";
+    }
+
+    @RequestMapping("user")
+    public String editUserPage(int userId, Model model) {
+        User user = userService.getById(userId);
+        model.addAttribute("user", user);
+        return "admin/editUser";
+    }
+
+    @RequestMapping("editUser")
+    public String editUser(User user, Model model, HttpSession session) {
+        userService.updateUser(user);
+        model.addAttribute("user", user);
+        session.setAttribute("user", user);
+        return "redirect:user?userId=" + user.getUserId();
+    }
+
+    @RequestMapping("editPassword")
+    public String editPassword(String password, String username) {
+        userService.updatePassword(username, password);
+        return "admin/editUser";
+    }
+
+    @RequestMapping("checkPassword")
+    @ResponseBody
+    public String checkPassword(String username, String password) {
+        User user = userService.login(username, password);
+        if (user != null)
+            return "";
+        return "wrong";
+    }
+
+    @RequestMapping("listUsers")
+    public String listUsers(Model model, Page page) {
+        PageHelper.offsetPage(page.getStart(), page.getCount());
+        List<User> users = userService.list();
+        int total = (int) new PageInfo<>(users).getTotal();
+        page.setTotal(total);
+        model.addAttribute("users", users);
+        model.addAttribute("page", page);
+        return "admin/listUsers";
+    }
+
+    @RequestMapping("checkExist")
+    @ResponseBody
+    public String checkExist(String username) {
+        User user = userService.getByName(username);
+        return user == null ? "unknown" : "";
+    }
 }

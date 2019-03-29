@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="yjh.dao.CompensateDAO">
+
+    <insert id="addCompensate" useGeneratedKeys="true" keyProperty="compensateId">
+        insert into compensate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            voucher_detail_id, user_id,
+            <if test='compensateReason != null and compensateReason != "" '>
+                compensate_reason
+            </if>
+
+        </trim>
+
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            #{voucherDetailId}, #{userId},
+        <if test='compensateReason != null and compensateReason != "" '>
+            #{compensateReason}
+        </if>
+        </trim>
+    </insert>
+
+</mapper>

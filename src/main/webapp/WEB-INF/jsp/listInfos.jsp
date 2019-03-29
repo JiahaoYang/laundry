@@ -2,16 +2,6 @@
 <%@include file="include/header.jsp" %>
 
 
-<script>
-    $(function () {
-        $("form.loginForm input").keyup(function () {
-            $("div.loginErrorMessageDiv").hide();
-        });
-        var left = window.innerWidth / 2 + 162;
-        $("div.loginSmallDiv").css("left", left);
-    })
-</script>
-
 <h2>洗衣店管理系统</h2>
 
 <div class="nav bg-primary">

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="yjh.dao.RewashDAO">
+
+    <insert id="addRewash" useGeneratedKeys="true" keyProperty="rewashId">
+        insert into rewash
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            voucher_detail_id, user_id,
+            <if test='rewashReason != null and rewashReason != "" '>
+                rewash_reason
+            </if>
+
+        </trim>
+
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            #{voucherDetailId}, #{userId},
+        <if test='rewashReason != null and rewashReason != "" '>
+            #{rewashReason}
+        </if>
+        </trim>
+    </insert>
+
+</mapper>

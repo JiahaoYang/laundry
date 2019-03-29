@@ -1,21 +1,39 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="../include/header.jsp" %>
 
-<h2>洗衣店管理系统</h2>
 
-<div class="nav bg-primary">
-    <span class="pull-left">
-        <a href="#">衣物设置</a>
-        <a href="#">收衣</a>
-        <a href="#">取衣</a>
-        <a href="#">会员管理</a>
-        <a href="#">统计中心</a>
-    </span>
-    <span class="pull-right">
-        <a href="#">你好XXX</a>
-        <a href="#">退出</a>
-    </span>
+<script>
+    $(function () {
+        $("#confirmDelete").click(function () {
+            window.location.href = 'deleteInfo?infoId=' + $("#deleteInfoId").val();
+        })
+    });
+    function showDeleteModal(infoId) {
+        $("#deleteInfoId").val(infoId);
+        $("#myModal").modal("show");
+    }
+</script>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">确认删除该条记录？</h4>
+                <input id="deleteInfoId"type="hidden" value="">
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
+                <button id="confirmDelete" class="btn btn-primary" type="button">提交</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+<%@include file="nagivator.jsp" %>
+
 
 <table class="table table-hover">
     <tr>
@@ -32,9 +50,9 @@
             <td>${info.name}</td>
             <td>${info.description}</td>
             <td>${info.price}</td>
-            <td><a href="editInfo?infoId=${info.infoId}"><span class="glyphicon glyphicon-edit"></span></a></td>
-            <td><a deleteLink="true" href="deleteInfo?infoId=${info.infoId}"><span
-                    class="glyphicon glyphicon-trash"></span></a></td>
+            <td><a href="editInfoPage?infoId=${info.infoId}"><span class="glyphicon glyphicon-edit"></span></a></td>
+            <td><a id="deleteLink" deleteLink="true"><span
+                    class="glyphicon glyphicon-trash" onclick="showDeleteModal(${info.infoId})"></span></a></td>
         </tr>
     </c:forEach>
 </table>
@@ -46,7 +64,7 @@
             <table class="addTable">
                 <tr>
                     <td>衣物名称</td>
-                    <td><input name="name" type="text" class="form-control"></td>
+                    <td><input name="name" type="text" class="form-control" required="required"></td>
                 </tr>
                 <tr>
                     <td>衣物描述</td>
@@ -54,7 +72,7 @@
                 </tr>
                 <tr>
                     <td>参考价格</td>
-                    <td><input name="price" type="text" class="form-control"></td>
+                    <td><input id="price" name="price" type="number" class="form-control" required="required"></td>
                 </tr>
                 <tr class="submitTR">
                     <td colspan="2" align="center">

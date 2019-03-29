@@ -29,4 +29,8 @@ public class InfoService {
     public int updateById(Info info) {
         return infoDAO.updateById(info);
     }
+
+    public Info getById(int infoId) {
+        return infoDAO.getById(infoId);
+    }
 }

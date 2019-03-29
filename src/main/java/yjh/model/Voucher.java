@@ -1,16 +1,40 @@
 package yjh.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Voucher {
 
     private Integer voucherId;
     private LocalDateTime getDate;
-    private LocalDateTime takeDate;
+    private String takeDate;
     private Double price;
     private String state;
     private Integer userId;
+    //正在洗衣 洗衣完成 已被取走
     private String comment;
+
+    //非数据库字段, 收衣单与收衣单明细为一对多关系
+    private List<VoucherDetail> voucherDetailList;
+    private User user;
+
+    public List<VoucherDetail> getVoucherDetailList() {
+        return voucherDetailList;
+    }
+
+    public void setVoucherDetailList(List<VoucherDetail> voucherDetailList) {
+        this.voucherDetailList = voucherDetailList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getVoucherId() {
         return voucherId;
@@ -28,11 +52,11 @@ public class Voucher {
         this.getDate = getDate;
     }
 
-    public LocalDateTime getTakeDate() {
+    public String getTakeDate() {
         return takeDate;
     }
 
-    public void setTakeDate(LocalDateTime takeDate) {
+    public void setTakeDate(String takeDate) {
         this.takeDate = takeDate;
     }
 

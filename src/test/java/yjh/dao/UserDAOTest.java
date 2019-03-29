@@ -4,8 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import yjh.model.Info;
-import yjh.model.User;
+import yjh.model.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -21,13 +20,19 @@ public class UserDAOTest {
     @Resource
     InfoDAO infoDAO;
 
+    @Resource
+    ClothesDAO clothesDAO;
+
+    @Resource
+    VoucherDAO voucherDAO;
+
+    @Resource
+    VoucherDetailDAO voucherDetailDAO;
+
+
     @Test
     public void addUser() {
-        User user = new User();
-        user.setUsername("yjh2");
-        user.setPassword("123");
-        user.setAddress("无锡");
-        userDAO.addUser(user);
+
     }
 
     @Test
@@ -54,9 +59,7 @@ public class UserDAOTest {
 
     @Test
     public void addInfo() {
-        Info info = new Info();
-        info.setInfoId(3);
-        info.setDescription("破洞");
-        infoDAO.updateById(info);
+        Voucher voucher = new Voucher();
     }
+
 }

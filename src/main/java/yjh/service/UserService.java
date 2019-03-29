@@ -3,8 +3,10 @@ package yjh.service;
 import org.springframework.stereotype.Service;
 import yjh.dao.UserDAO;
 import yjh.model.User;
+import yjh.util.MD5Util;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -21,6 +23,8 @@ public class UserService {
     }
 
     public int addUser(User user) {
+        String password = user.getPassword();
+        user.setPassword(MD5Util.MD5(password));
         return userDAO.addUser(user);
     }
 
@@ -34,8 +38,16 @@ public class UserService {
 
     public User login(String username, String password) {
         User user = userDAO.getByName(username);
-        if (user != null && user.getPassword().equals(password))
+        if (user != null && user.getPassword().equals(MD5Util.MD5(password)))
             return user;
         return null;
+    }
+
+    public int updatePassword(String username, String password) {
+        return userDAO.updatePassword(username, MD5Util.MD5(password));
+    }
+
+    public List<User> list() {
+        return userDAO.list();
     }
 }

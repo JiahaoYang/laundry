@@ -28,4 +28,30 @@ public class InfoController {
         model.addAttribute("page", page);
         return "listInfos";
     }
+
+    @RequestMapping("addInfo")
+    public String addInfo(Info info) {
+        infoService.addInfo(info);
+        return "redirect:adminHome";
+    }
+
+    @RequestMapping("deleteInfo")
+    public String deleteInfo(int infoId) {
+        infoService.deleteById(infoId);
+        return "redirect:adminHome";
+    }
+
+    @RequestMapping("editInfoPage")
+    public String editInfoPage(int infoId, Model model) {
+        Info info = infoService.getById(infoId);
+        model.addAttribute("info", info);
+        return "admin/editInfo";
+    }
+
+    @RequestMapping("editInfo")
+    public String editInfo(Info info, Model model) {
+        infoService.updateById(info);
+        model.addAttribute("info", info);
+        return "admin/editInfo";
+    }
 }

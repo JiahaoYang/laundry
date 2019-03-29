@@ -5,8 +5,6 @@ public class Clothes {
 
     private Integer clothesId;
     private String clothesName;
-    private String serverName;
-    private Double washPrice;
     private String brand;
     private String color;
     private String flaw;
@@ -25,22 +23,6 @@ public class Clothes {
 
     public void setClothesName(String clothesName) {
         this.clothesName = clothesName;
-    }
-
-    public String getServerName() {
-        return serverName;
-    }
-
-    public void setServerName(String serverName) {
-        this.serverName = serverName;
-    }
-
-    public Double getWashPrice() {
-        return washPrice;
-    }
-
-    public void setWashPrice(Double washPrice) {
-        this.washPrice = washPrice;
     }
 
     public String getBrand() {
@@ -72,8 +54,6 @@ public class Clothes {
         return "Clothes{" +
                 "clothesId=" + clothesId +
                 ", clothesName='" + clothesName + '\'' +
-                ", serverName='" + serverName + '\'' +
-                ", washPrice=" + washPrice +
                 ", brand='" + brand + '\'' +
                 ", color='" + color + '\'' +
                 ", flaw='" + flaw + '\'' +

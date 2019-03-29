@@ -86,12 +86,12 @@ td.addPictureTableTD {
     vertical-align: top;
 }
 
-div.orderPageOrderItem {
+div.voucherDetail {
     width: 100%;
     padding: 20px;
 }
 
-table.orderPageOrderItemTable td {
+table.voucherDetailTable td {
     padding: 5px;
 }
 

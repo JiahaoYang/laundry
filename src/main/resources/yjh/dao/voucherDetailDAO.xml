@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="yjh.dao.VoucherDetailDAO">
+
+    <insert id="addVoucherDetail" useGeneratedKeys="true" keyProperty="voucherDetailId">
+
+        insert into voucher_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            voucher_id, clothes_id,
+            <if test='serverName != null and serverName != "" '>
+                server_name,
+            </if>
+            <if test='washPrice != null and washPrice != "" '>
+                wash_price
+            </if>
+        </trim>
+
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            #{voucherId}, #{clothesId},
+            <if test='serverName != null and serverName != "" '>
+                #{serverName},
+            </if>
+            <if test='washPrice != null and washPrice != "" '>
+                #{washPrice}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateVoucherDetail">
+        update voucher_detail
+        <trim prefix="set" suffixOverrides=",">
+            <if test='isTaken != null and isTaken != "" '>
+                is_taken = #{isTaken},
+            </if>
+            <if test='isRewash != null and isRewash != "" '>
+                is_rewash = #{isRewash},
+            </if>
+            <if test='isCompensate != null and isCompensate != "" '>
+                is_compensate = #{isCompensate}
+            </if>
+        </trim>
+        where voucher_detail_id = #{voucherDetailId}
+    </update>
+
+
+
+
+</mapper>
