@@ -7,11 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import yjh.dto.IncomeDTO;
 import yjh.model.*;
 import yjh.service.*;
 import yjh.util.Page;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -27,6 +31,7 @@ public class VoucherController {
 
     @RequestMapping("listVouchers")
     public String listVouchers(Model model, Page page) {
+        page.setCount(5);
         PageHelper.offsetPage(page.getStart(), page.getCount());
         List<Voucher> vouchers = voucherService.list();
         int total = (int) new PageInfo<>(vouchers).getTotal();
@@ -74,5 +79,32 @@ public class VoucherController {
         voucherDetail.setVoucherDetailId(vdId);
         voucherDetailService.updateVoucherDetail(voucherDetail);
         return "redirect:listVouchers";
+    }
+
+    @RequestMapping("listByMonth")
+    @ResponseBody
+    public List<IncomeDTO> listByMonth(String now) {
+        return voucherService.listByMonth(now);
+    }
+
+    @RequestMapping("listMonths")
+    public String listMonths(Model model) {
+        List<String> months = voucherService.listMonths();
+        model.addAttribute("months", months);
+        return "admin/listByMonth";
+    }
+
+
+    @RequestMapping("myVouchers")
+    public String myVouchers(HttpSession session, Model model, Page page) {
+        page.setCount(10);
+        User user = (User) session.getAttribute("user");
+        PageHelper.offsetPage(page.getStart(), page.getCount());
+        List<Voucher> vouchers = voucherService.getByUser(user.getUserId());
+        int total = (int) new PageInfo<>(vouchers).getTotal();
+        page.setTotal(total);
+        model.addAttribute("vouchers", vouchers);
+        model.addAttribute("page", page);
+        return "user/myVouchers";
     }
 }

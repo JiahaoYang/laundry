@@ -2,9 +2,12 @@ package yjh.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import yjh.dto.IncomeDTO;
 import yjh.model.*;
+import yjh.service.VoucherService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -28,6 +31,9 @@ public class UserDAOTest {
 
     @Resource
     VoucherDetailDAO voucherDetailDAO;
+
+    @Autowired
+    VoucherService voucherService;
 
 
     @Test
@@ -60,6 +66,11 @@ public class UserDAOTest {
     @Test
     public void addInfo() {
         Voucher voucher = new Voucher();
+    }
+
+    @Test
+    public void test() {
+        List<String> list = voucherService.listMonths();
     }
 
 }

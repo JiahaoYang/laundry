@@ -20,6 +20,7 @@ public class InfoController {
 
     @RequestMapping("/listInfos")
     public String listInfos(Page page, Model model) {
+        page.setCount(10);
         PageHelper.offsetPage(page.getStart(), page.getCount());
         List<Info> infos = infoService.list();
         int total = (int) new PageInfo<>(infos).getTotal();

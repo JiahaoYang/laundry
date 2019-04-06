@@ -54,7 +54,7 @@
 
 </script>
 
-<%@include file="nagivator.jsp" %>
+<%@include file="navigator.jsp" %>
 <br>
 <br>
 
@@ -67,6 +67,7 @@
     <ul class="nav nav-tabs">
         <li role="presentation" id="userInfoTab" class="active"><a href="#userInfoDiv" data-toggle="tab" onclick="$('#errorDiv').hide()">个人信息</a></li>
         <li role="presentation" id="passwordTab"><a href="#passwordDiv" data-toggle="tab" onclick="$('#errorDiv').hide()">修改密码</a></li>
+        <li role="presentation" id="balanceTab"><a href="#balanceDiv" data-toggle="tab" onclick="$('#errorDiv').hide()">账户信息</a></li>
     </ul>
 
     <div class="tab-content">
@@ -106,6 +107,21 @@
                 <br/>
                 <button class="btn btn-lg btn-info btn-block " id="editPasswordBtn" type="submit">更新</button>
             </form>
+        </div>
+
+
+
+        <div id="balanceDiv" class="tab-pane fade">
+            <br>
+            <label>账户余额</label>
+            <input name="balance" class="form-control" placeholder="账户余额" value="${user.balance}" readonly="readonly">
+            <br>
+            <label>消费总额</label>
+            <input name="totalConsume" class="form-control" placeholder="消费总额" value="${user.totalConsume}" readonly="readonly">
+            <br>
+            <label>消费次数</label>
+            <input name="consumeTimes" class="form-control" placeholder="消费次数" value="${user.consumeTimes}" readonly="readonly">
+            <br>
         </div>
     </div>
 </div>

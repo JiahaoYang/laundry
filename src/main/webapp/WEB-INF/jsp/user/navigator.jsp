@@ -5,11 +5,11 @@
 
 <div class="nav bg-primary">
     <span class="pull-left">
-        <a href="#">我的订单</a>
-        <a href="#">参考价格</a>
+        <a href="userHome">参考价格</a>
+        <a href="myVouchers">我的订单</a>
     </span>
     <span class="pull-right">
-        <a href="user/${pageContext.session.getAttribute("user").userId}">
+        <a href="user?userId=${pageContext.session.getAttribute("user").userId}">
             ${pageContext.session.getAttribute("user").username}
         </a>
         <a href="logout">退出</a>

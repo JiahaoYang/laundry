@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import yjh.model.*;
 import yjh.service.*;
@@ -44,8 +43,8 @@ public class ClothesController {
             Clothes c = new Clothes();
             VoucherDetail v = new VoucherDetail();
             c.setClothesName(clothesName[i]);
-            c.setBrand(brand[i]);
-            c.setColor(color[i]);
+            c.setBrand(brand != null && brand.length > 0 ? brand[i] : "");
+            c.setColor(color != null && color.length > 0 ? color[i] : "");
             c.setFlaw(flaw[i]);
             clothesService.addClothes(c);
             v.setWashPrice(washPrice[i]);

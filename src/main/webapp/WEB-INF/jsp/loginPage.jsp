@@ -50,8 +50,8 @@
     </div>
 
     <ul class="nav nav-tabs">
-        <li role="presentation" id="loginTab" class="active"><a href="#loginDiv" data-toggle="tab">登录</a></li>
-        <li role="presentation" id="registerTab"><a href="#registerDiv" data-toggle="tab">注册</a></li>
+        <li role="presentation" id="loginTab" class="active"><a href="#loginDiv" data-toggle="tab" onclick="$('#errorDiv').hide()">登录</a></li>
+        <li role="presentation" id="registerTab"><a href="#registerDiv" data-toggle="tab" onclick="$('#errorDiv').hide()">注册</a></li>
     </ul>
 
     <div class="tab-content">

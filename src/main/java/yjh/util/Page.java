@@ -17,7 +17,7 @@ public class Page {
         return start != getLast();
     }
 
-    private static final int defaultCount = 10; //默认每页显示5条
+    private static final int defaultCount = 10;
 
     public int getStart() {
         return start;

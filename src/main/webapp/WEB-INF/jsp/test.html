@@ -1,79 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
     <script>
         $(function () {
-            $("#registerName").blur(function() {
-                var user = {username: $("#registerName")};
-                $.post(
-                    {
-                        url: "checkName",
-                        data: user,
-                        success: function(data) {
-                            if (data === "exist") {
-                                $("span.errorMessage").html("用户名已存在");
-                            }
-                        }
-                    }
-                )
-            });
-        })
+            $('#month').change(function () {
+                    var m = {"month": $("#month").text()};
+                    alert(m);
+                    $('.dropdown-toggle').dropdown();
+                }
+            );
+        });
+    </script>
+    <script>
+        function getByMonth() {
+            var vs = $('#month').val();
+            alert(vs);
+        }
     </script>
 </head>
 <body>
 
-<div style="max-width:400px;margin:100px auto;" id="userDiv">
 
-    <div id="errorDiv" style="display:none" class="alert alert-danger alert-dismissable">
-        <span id="errorMessage"></span>
-    </div>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 
-    <ul class="nav nav-tabs">
-        <li role="presentation" id="userInfoTab" class="active"><a href="#userInfoDiv" data-toggle="tab">个人信息</a></li>
-        <li role="presentation" id="passwordTab"><a href="#passwordDiv" data-toggle="tab">修改密码</a></li>
-    </ul>
-
-    <div class="tab-content">
-        <div id="userInfoDiv" class="tab-pane fade in active">
-            <form method="post" action="editUser">
-                <br>
-                <br>
-                <input name="username" class="form-control" placeholder="用户名" required="required" value="${user.username}">
-                <br>
-                <input name="userType" class="form-control" placeholder="用户类型" value="${user.userType}" readonly="readonly">
-                <br>
-                <select class="form-control" name="gender">
-                    <option value="">性别（选填）</option>
-                    <option value="男">男</option>
-                    <option value="女">女</option>
-                </select>                <br>
-                <input name="phone" class="form-control" placeholder="联系方式（选填）" value="${user.phone}">
-                <br>
-                <input name="address" class="form-control" placeholder="地址（选填）" value="${user.address}">
-                <br>
-                <br>
-                <button class="btn btn-lg btn-info btn-block " type="submit">更新</button>
-            </form>
-        </div>
-
-        <div id="passwordDiv" class="tab-pane fade">
-            <form method="post" action="editPassword">
-                <br/>
-                <br/>
-                <input type="password" id="oldPassword" name="oldPassword" class="form-control" placeholder="旧密码" required="required">
-                <br>
-                <input type="password" name="password" class="form-control" placeholder="新密码" required="required">
-                <br/>
-                <br/>
-                <button class="btn btn-lg btn-info btn-block " type="submit">更新</button>
-            </form>
-        </div>
-    </div>
+<div id="balanceDiv">
+    <label>账户余额L</label>
+    <input name="balance" class="form-control" placeholder="账户余额" value="${user.balance}" readonly="readonly">
+    <br>
+    <input name="totalConsume" class="form-control" placeholder="消费总额" value="${user.totalConsume}" readonly="readonly">
+    <br>
+    <input name="consumeTimes" class="form-control" placeholder="消费次数" value="${user.consumeTimes}" readonly="readonly">
+    <br>
 </div>
-
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

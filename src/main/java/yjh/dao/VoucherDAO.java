@@ -16,10 +16,17 @@ public interface VoucherDAO {
     @Select(" select * from voucher where voucher_id=#{voucherId} ")
     Voucher getById(int voucherId);
 
-    @Select(" select * from voucher where user_id=#{userId} ")
-    Voucher getByUser(int userId);
+    @Select(" select * from voucher where user_id=#{userId} order by get_date desc")
+    List<Voucher> getByUser(int userId);
 
-    @Select(" select * from voucher ")
+    @Select(" select * from voucher order by get_date desc")
     List<Voucher> list();
+
+
+    @Select(" select * from voucher order by get_date")
+    List<Voucher> list1();
+
+    @Select(" select * from voucher where date_format(get_date, '%Y-%m')=#{month} order by get_date ")
+    List<Voucher> listByMonth(String month);
     
 }

@@ -15,4 +15,6 @@ public class LoginRequiredInterceptor implements HandlerInterceptor {
             response.sendRedirect("loginPage");
         return true;
     }
+
+
 }

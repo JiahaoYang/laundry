@@ -6,7 +6,7 @@
         <a href="adminHome">衣物设置</a>
         <a href="listVouchers">订单管理</a>
         <a href="listUsers">会员管理</a>
-        <a href="#">统计中心</a>
+        <a href="listMonths">统计中心</a>
     </span>
     <span class="pull-right">
         <a href="user?userId=${pageContext.session.getAttribute("user").userId}">

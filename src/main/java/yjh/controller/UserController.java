@@ -70,7 +70,7 @@ public class UserController {
         if (user != null) {
             session.setAttribute("user", user);
             if (user.getUserType().equals("会员"))
-                return "";
+                return "redirect:userHome";
             else
                 return "redirect:adminHome";
         }
@@ -90,6 +90,18 @@ public class UserController {
         return "admin/listInfos";
     }
 
+    @RequestMapping("userHome")
+    public String userHome(Page page, Model model) {
+        page.setTotal(10);
+        PageHelper.offsetPage(page.getStart(), page.getCount());
+        List<Info> infos = infoService.list();
+        int total = (int) new PageInfo<>(infos).getTotal();
+        page.setTotal(total);
+        model.addAttribute("infos", infos);
+        model.addAttribute("page", page);
+        return "user/userHome";
+    }
+
     @RequestMapping("logout")
     public String logout(HttpSession session) {
         session.setAttribute("user", null);
@@ -100,7 +112,9 @@ public class UserController {
     public String editUserPage(int userId, Model model) {
         User user = userService.getById(userId);
         model.addAttribute("user", user);
-        return "admin/editUser";
+        if (user.getUserType().equals("管理员"))
+            return "admin/editUser";
+        return "user/editUser";
     }
 
     @RequestMapping("editUser")

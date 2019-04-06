@@ -8,7 +8,7 @@ import java.util.List;
 public class Voucher {
 
     private Integer voucherId;
-    private LocalDateTime getDate;
+    private String getDate;
     private String takeDate;
     private Double price;
     private String state;
@@ -44,11 +44,11 @@ public class Voucher {
         this.voucherId = voucherId;
     }
 
-    public LocalDateTime getGetDate() {
+    public String getGetDate() {
         return getDate;
     }
 
-    public void setGetDate(LocalDateTime getDate) {
+    public void setGetDate(String getDate) {
         this.getDate = getDate;
     }
 

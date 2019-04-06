@@ -47,27 +47,28 @@
                 <table class="addTable">
                     <tr>
                         <td>衣物名称</td>
-                        <td><input name="clothesName" class="form-control" required="required"></td>
+                        <td><input name="clothesName" class="form-control" required="required" placeholder="必填"></td>
                     </tr>
                     <tr>
                         <td>衣物品牌</td>
-                        <td><input name="brand" class="form-control"></td>
+                        <td><input name="brand" class="form-control" placeholder="选填"></td>
                     </tr>
                     <tr>
                         <td>衣物颜色</td>
-                        <td><input name="color" class="form-control"></td>
+                        <td><input name="color" class="form-control" placeholder="选填"></td>
                     </tr>
                     <tr>
                         <td>瑕疵描述</td>
-                        <td><input name="flaw" class="form-control"></td>
+                        <td><input name="flaw" class="form-control" placeholder="必填"></td>
                     </tr>
                     <tr>
                         <td>服务名称</td>
-                        <td><input name="serverName" class="form-control" required="required"></td>
+                        <td><input name="serverName" class="form-control" required="required" placeholder="必填"></td>
                     </tr>
                     <tr>
                         <td>单价</td>
-                        <td><input name="washPrice" type="number" class="form-control" required="required"></td>
+                        <td><input name="washPrice" type="number" class="form-control" required="required"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '');" placeholder="必填"></td>
                     </tr>
                 </table>
                 <br>

@@ -35,7 +35,8 @@
             </div>
             <div class="modal-body">
                 <p>请输入衣物件数</p>
-                <input type="number" class="form-control" id="num">
+                <input type="number" class="form-control" id="num" min="1"
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '');">
             </div>
             <div class="modal-footer">
                 <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
@@ -66,7 +67,7 @@
             <td>${voucher.state}</td>
             <td>${voucher.price}</td>
             <td>${voucher.user.username}</td>
-            <td>${f:formatLocalDateTime(voucher.getDate, 'yyyy-MM-dd HH:mm:ss')}</td>
+            <td>${voucher.getDate}</td>
             <td>
                 <c:if test="${!empty voucher.takeDate}">
                     ${voucher.takeDate}
