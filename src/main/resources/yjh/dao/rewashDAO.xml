@@ -8,17 +8,10 @@
         insert into rewash
         <trim prefix="(" suffix=")" suffixOverrides=",">
             voucher_detail_id, user_id,
-            <if test='rewashReason != null and rewashReason != "" '>
-                rewash_reason
-            </if>
-
         </trim>
 
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             #{voucherDetailId}, #{userId},
-        <if test='rewashReason != null and rewashReason != "" '>
-            #{rewashReason}
-        </if>
         </trim>
     </insert>
 

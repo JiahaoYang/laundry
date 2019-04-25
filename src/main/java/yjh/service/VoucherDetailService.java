@@ -26,7 +26,10 @@ public class VoucherDetailService {
     }
 
     public VoucherDetail getById(int voucherDetailId) {
-        return voucherDetailDAO.getById(voucherDetailId);
+        VoucherDetail voucherDetail = voucherDetailDAO.getById(voucherDetailId);
+        Clothes clothes = clothesService.getById(voucherDetail.getClothesId());
+        voucherDetail.setClothes(clothes);
+        return voucherDetail;
     }
 
     public List<VoucherDetail> getByVoucherId(int voucherId) {
@@ -50,6 +53,7 @@ public class VoucherDetailService {
         }
         voucher.setVoucherDetailList(voucherDetails);
     }
+
 
     public int updateByVoucher(int voucherId) {
         return voucherDetailDAO.updateByVoucher(voucherId);

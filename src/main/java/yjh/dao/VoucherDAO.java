@@ -16,7 +16,7 @@ public interface VoucherDAO {
     @Select(" select * from voucher where voucher_id=#{voucherId} ")
     Voucher getById(int voucherId);
 
-    @Select(" select * from voucher where user_id=#{userId} order by get_date desc")
+    @Select(" select * from voucher where user_id=#{userId} order by get_date")
     List<Voucher> getByUser(int userId);
 
     @Select(" select * from voucher order by get_date desc")

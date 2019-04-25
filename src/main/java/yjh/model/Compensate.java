@@ -8,7 +8,26 @@ public class Compensate {
     private Integer voucherDetailId;
     private Integer userId;
     private LocalDateTime compensateDate;
-    private String compensateReason;
+
+    private VoucherDetail voucherDetail;
+
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public VoucherDetail getVoucherDetail() {
+        return voucherDetail;
+    }
+
+    public void setVoucherDetail(VoucherDetail voucherDetail) {
+        this.voucherDetail = voucherDetail;
+    }
 
     public Integer getCompensateId() {
         return compensateId;
@@ -42,13 +61,6 @@ public class Compensate {
         this.compensateDate = compensateDate;
     }
 
-    public String getCompensateReason() {
-        return compensateReason;
-    }
-
-    public void setCompensateReason(String compensateReason) {
-        this.compensateReason = compensateReason;
-    }
 
     @Override
     public String toString() {
@@ -57,7 +69,6 @@ public class Compensate {
                 ", voucherDetailId=" + voucherDetailId +
                 ", userId=" + userId +
                 ", compensateDate=" + compensateDate +
-                ", compensateReason='" + compensateReason + '\'' +
                 '}';
     }
 }

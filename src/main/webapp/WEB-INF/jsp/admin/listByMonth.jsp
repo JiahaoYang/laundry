@@ -6,6 +6,7 @@
 <script>
     function getByMonth() {
         var now = {"now": $("#month").val()};
+        var total = 0;
         var dates = [];
         var incomes = [];
         $.ajax(
@@ -18,7 +19,9 @@
                         for (var i = 0; i < data.length; ++i) {
                             dates.push(data[i].date);
                             incomes.push(data[i].income);
+                            total += data[i].income;
                         }
+                        $("#total").val(total);
                     }
                     myChart.setOption({
                         xAxis: {
@@ -41,13 +44,27 @@
     }
 </script>
 <br>
+<div class="row">
+    <div class="col-md-8">
+        <select class="form-control" id="month" style="width: 15%" onchange="getByMonth()">
+            <option value="">请选择月份</option>
+            <c:forEach items="${months}" var="month">
+                <option value="${month}">${month}</option>
+            </c:forEach>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="total">总收入</label>
+                <input type="text" class="form-control" id="total" readonly="readonly">
+            </div>
+        </form>
+    </div>
+</div>
 
-<select class="form-control" id="month" style="width: 15%" onchange="getByMonth()">
-    <option value="">日期</option>
-    <c:forEach items="${months}" var="month">
-        <option value="${month}">${month}</option>
-    </c:forEach>
-</select>
+
+
 <br>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="main" align="center" style="width: 1350px;height:550px;"></div>

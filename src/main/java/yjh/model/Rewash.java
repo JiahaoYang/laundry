@@ -9,7 +9,26 @@ public class Rewash {
     private Integer userId;
     private LocalDateTime rewashDate;
     private LocalDateTime takeDate;
-    private String rewashReason;
+
+    private VoucherDetail voucherDetail;
+
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public VoucherDetail getVoucherDetail() {
+        return voucherDetail;
+    }
+
+    public void setVoucherDetail(VoucherDetail voucherDetail) {
+        this.voucherDetail = voucherDetail;
+    }
 
     public Integer getRewashId() {
         return rewashId;
@@ -51,13 +70,7 @@ public class Rewash {
         this.takeDate = takeDate;
     }
 
-    public String getRewashReason() {
-        return rewashReason;
-    }
 
-    public void setRewashReason(String rewashReason) {
-        this.rewashReason = rewashReason;
-    }
 
     @Override
     public String toString() {
@@ -67,7 +80,6 @@ public class Rewash {
                 ", userId=" + userId +
                 ", rewashDate=" + rewashDate +
                 ", takeDate=" + takeDate +
-                ", rewashReason='" + rewashReason + '\'' +
                 '}';
     }
 }

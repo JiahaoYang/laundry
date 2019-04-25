@@ -8,17 +8,10 @@
         insert into compensate
         <trim prefix="(" suffix=")" suffixOverrides=",">
             voucher_detail_id, user_id,
-            <if test='compensateReason != null and compensateReason != "" '>
-                compensate_reason
-            </if>
-
         </trim>
 
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             #{voucherDetailId}, #{userId},
-        <if test='compensateReason != null and compensateReason != "" '>
-            #{compensateReason}
-        </if>
         </trim>
     </insert>
 

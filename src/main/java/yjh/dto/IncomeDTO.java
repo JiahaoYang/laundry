@@ -3,8 +3,8 @@ package yjh.dto;
 
 public class IncomeDTO {
 
-    String date;
-    Double income;
+    private String date;
+    private Double income;
 
     public String getDate() {
         return date;

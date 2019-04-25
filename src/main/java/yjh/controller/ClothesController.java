@@ -62,5 +62,4 @@ public class ClothesController {
         return "redirect:listVouchers";
     }
 
-
 }

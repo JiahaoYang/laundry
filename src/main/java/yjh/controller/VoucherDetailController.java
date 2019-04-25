@@ -3,9 +3,12 @@ package yjh.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import yjh.model.*;
 import yjh.service.*;
+
+import java.util.List;
 
 @Controller
 public class VoucherDetailController {
@@ -18,6 +21,7 @@ public class VoucherDetailController {
 
     @Autowired
     private RewashService rewashService;
+
 
     @RequestMapping("rewash")
     @Transactional
@@ -45,5 +49,14 @@ public class VoucherDetailController {
         voucherDetail.setIsCompensate("已赔偿");
         voucherDetailService.updateVoucherDetail(voucherDetail);
         return "redirect:listVouchers";
+    }
+
+    @RequestMapping("listRecords")
+    public String listRecords(Model model) {
+        List<Rewash> rewashList = rewashService.list();
+        List<Compensate> compensates = compensateService.list();
+        model.addAttribute("rewashes", rewashList);
+        model.addAttribute("compensates", compensates);
+        return "admin/listRecords";
     }
 }
